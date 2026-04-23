@@ -39,7 +39,7 @@ git clone https://github.com/gh-tui-tools/gh-review.vim.git
 With [vim-plug](https://github.com/junegunn/vim-plug):
 
 ```vim
-Plug 'gh-tui-tools/gh-review.vim'
+Plug 'felipesilvadv/gh-review.vim'
 ```
 
 ## Workflows
