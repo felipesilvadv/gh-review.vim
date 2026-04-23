@@ -2,6 +2,7 @@ vim9script
 
 # Thread/comment buffer for viewing and replying to review threads.
 
+import autoload 'gh_review.vim' as orchestrator
 import autoload 'gh_review/state.vim'
 import autoload 'gh_review/api.vim'
 import autoload 'gh_review/graphql.vim'
@@ -308,7 +309,6 @@ def SubmitReviewReply(body: string)
     if !empty(comment)
       echo 'Reply submitted (pending review)'
       # Refresh the thread to show the new comment
-      import autoload 'gh_review.vim' as orchestrator
       orchestrator.RefreshThreads()
       CloseThreadBuffer()
     else
@@ -344,7 +344,6 @@ def SubmitStandaloneReply(body: string)
         return
       endif
       echo 'Reply submitted'
-      import autoload 'gh_review.vim' as orchestrator
       orchestrator.RefreshThreads()
       CloseThreadBuffer()
     })
@@ -368,7 +367,6 @@ def SubmitReplyViaGraphQL(body: string, in_reply_to: string)
       var submit_vars: dict<any> = {reviewId: review_id, event: 'COMMENT'}
       api.GraphQL(graphql.MUTATION_SUBMIT_REVIEW, submit_vars, (_) => {
         echo 'Reply submitted'
-        import autoload 'gh_review.vim' as orchestrator
         orchestrator.RefreshThreads()
         CloseThreadBuffer()
       })
